@@ -116,19 +116,9 @@ defmodule MecksUnit do
     |> elem(0)
   end
 
-  def define_mocks(mocks, test_module, mock_index) do
-    prefix = [Atom.to_string(test_module), mock_index, "."] |> Enum.join()
-
+  def define_mocks(mocks, _test_module, _mock_index) do
     Enum.each(mocks, fn {mock_module, block} ->
-      original_module =
-        mock_module
-        |> Atom.to_string()
-        |> String.replace(prefix, "Elixir.")
-        |> String.to_atom()
-
-      if function_exported?(mock_module, :__info__, 1) do
-        IO.warn("Already defined mock module for #{original_module}")
-      else
+      if !function_exported?(mock_module, :__info__, 1) do
         Code.eval_quoted({:defmodule, [import: Kernel], [mock_module, [do: block]]})
       end
     end)

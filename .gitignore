@@ -23,3 +23,5 @@ erl_crash.dump
 mecks_unit-*.tar
 
 .DS_Store
+
+/.elixir_ls

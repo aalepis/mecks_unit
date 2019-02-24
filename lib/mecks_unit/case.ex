@@ -29,9 +29,6 @@ defmodule MecksUnit.Case do
         unquote(block)
         MecksUnit.Server.unregister_mock_env(self())
       end
-
-      Module.delete_attribute(__MODULE__, :mocks)
-      @mock_index @mock_index + 1
     end
   end
 

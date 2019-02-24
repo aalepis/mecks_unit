@@ -19,6 +19,6 @@ defmodule MecksUnit.MockedTest do
   end
 
   mocked_test "mocking works again" do
-    assert Mocked.func2() === :returns_from_module_a
+    assert Mocked.func2() === :returns_from_mocking
   end
 end
